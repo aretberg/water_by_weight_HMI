@@ -354,7 +354,7 @@ function makeInputValuesJSONString()
     json_str = '{"' + host_txtbx.id + '":"' + host_txtbx.value +
                 '","' + port_txtbx.id + '":"' + port_txtbx.value +
                 '","' + water_on_time_ms_txt.id + '":' + water_on_time_ms_txt.value +
-                ',"' + water_off_time_hr_txt.id + '":' + water_off_time_hr_txt.value +
+                ',"' + soak_time_min_txt.id + '":' + soak_time_min_txt.value +
                 ',"' + dry_weight_limit_txt.id + '":' + dry_weight_limit_txt.value +
                 '}';
 
