@@ -110,7 +110,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text">Soak Time</span>
                                         <input class="form-control" type="text" id="soak-time-min" value=<?=$input_values["soak-time-min"]?>>
-                                        <span class="input-group-text">hours</span>
+                                        <span class="input-group-text">minutes</span>
                                     </div>                                    
                                 </li>
                                 <li class="list-group-item border-0">
