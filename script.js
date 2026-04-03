@@ -5,6 +5,7 @@ const topic_water_pump_state = "lettuce-hmi/water-pump";
 const topic_auto_cycle_status = "lettuce-hmi/auto-cycle";
 const topic_water_on_time_ms = "lettuce-hmi/water-on-time-ms";
 const topic_soak_time_min = "lettuce-hmi/soak-time-min"
+const topic_dry_weight_limit = "lettuce-hmi/dry-weight-limit"
 
 // subscribe topics
 const sub_topic = "weigh-station-esp32/#";
@@ -26,6 +27,7 @@ const device_state_txt = document.getElementById("device-state");
 const load_cell_mv_txt = document.getElementById("load-cell-mv");
 const water_on_time_ms_txt = document.getElementById("water-pump-on-time-ms");
 const soak_time_min_txt = document.getElementById("soak-time-min");
+const dry_weight_limit_txt = document.getElementById("dry-weight-limit");
 
 const date_time_txt = document.getElementById("date-time-current");
 
@@ -119,9 +121,15 @@ auto_cycle_on_btn.addEventListener("click", function(){
         pub_message.qos = 0;
         client.send(pub_message);
 
-        //send a message with the water pump 'off' time input field value
+        //send a message with the 'soak' time input field value
         pub_message = new Paho.Message(soak_time_min_txt.value);
         pub_message.destinationName = topic_soak_time_min;
+        pub_message.qos = 0;
+        client.send(pub_message);
+
+        //send a message with the 'dry weight limit' input field value
+        pub_message = new Paho.Message(dry_weight_limit_txt.value);
+        pub_message.destinationName = topic_dry_weight_limit;
         pub_message.qos = 0;
         client.send(pub_message);
         
@@ -347,6 +355,7 @@ function makeInputValuesJSONString()
                 '","' + port_txtbx.id + '":"' + port_txtbx.value +
                 '","' + water_on_time_ms_txt.id + '":' + water_on_time_ms_txt.value +
                 ',"' + water_off_time_hr_txt.id + '":' + water_off_time_hr_txt.value +
+                ',"' + dry_weight_limit_txt.id + '":' + dry_weight_limit_txt.value +
                 '}';
 
     return json_str;

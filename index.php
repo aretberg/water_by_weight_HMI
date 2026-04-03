@@ -113,6 +113,13 @@
                                         <span class="input-group-text">hours</span>
                                     </div>                                    
                                 </li>
+                                <li class="list-group-item border-0">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Dry Weight Limit</span>
+                                        <input class="form-control" type="text" id="dry-weight-limit" value=<?=$input_values["dry-weight-limit"]?>>
+                                        <span class="input-group-text">load cell units</span>
+                                    </div>                                    
+                                </li>
                             </ul>
                         </div>
                     </div>
