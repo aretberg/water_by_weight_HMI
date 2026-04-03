@@ -52,10 +52,10 @@
                 <div class="col">
                     <div class="card h-100 text-center">
                         <div class="card-header text-white" style="background-color:#77B0AA"">
-                            <h4>Auto Cycle Status</h4>
+                            <h4>Load Cell (mV)</h4>
                         </div>
                         <div class="card-body">
-                            <h4 id="water-cycle-status" class="card-text">NA</h4>
+                            <h4 id="load-cell-mv" class="card-text">NA</h4>
                         </div>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
                                 </li>
                                 <li class="list-group-item border-0">
                                     <div class="input-group">
-                                        <span class="input-group-text">Water Pump OFF Time</span>
-                                        <input class="form-control" type="text" id="water-pump-off-time-hr" value=<?=$input_values["water-pump-off-time-hr"]?>>
+                                        <span class="input-group-text">Soak Time</span>
+                                        <input class="form-control" type="text" id="soak-time-min" value=<?=$input_values["soak-time-min"]?>>
                                         <span class="input-group-text">hours</span>
                                     </div>                                    
                                 </li>

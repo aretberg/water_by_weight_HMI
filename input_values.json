@@ -1,6 +1,1 @@
-{
-    "mqtt-host":"192.168.68.56",
-    "mqtt-port":"8083",
-    "water-pump-on-time-ms":15000,
-    "water-pump-off-time-hr":12
-}
+{"mqtt-host":"192.168.68.56","mqtt-port":"8083","water-pump-on-time-ms":3000,"soak-time-min":5}

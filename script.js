@@ -2,12 +2,13 @@ const client_id = String(Math.floor(Math.random() * 10e16));                    
 
 // publish topics
 const topic_water_pump_state = "lettuce-hmi/water-pump";
-const topic_auto_cycle_status = "lettuce-hmi/cycle-status";
+const topic_auto_cycle_status = "lettuce-hmi/auto-cycle";
 const topic_water_on_time_ms = "lettuce-hmi/water-on-time-ms";
-const topic_water_off_time_hr = "lettuce-hmi/water-off-time-hr"
+const topic_soak_time_min = "lettuce-hmi/soak-time-min"
 
 // subscribe topics
-const sub_topic = "lettuce-esp32/#";
+const sub_topic = "weigh-station-esp32/#";
+const sub_topic_root = "weigh-station-esp32";
 const topic_device_state = "lettuce-esp32/device-state";    // "Idle", "WaterOn", or "WaterOff"
 const topic_water_cycle_status = "lettuce-esp32/water-cycle-status";    // "auto" or "manual"
 
@@ -22,9 +23,9 @@ const water_pump_off_btn = document.getElementById("water-pump-off-btn");
 const auto_cycle_on_btn = document.getElementById("auto-cycle-on-btn");
 const auto_cycle_off_btn = document.getElementById("auto-cycle-off-btn");
 const device_state_txt = document.getElementById("device-state");
-const water_cycle_status_txt = document.getElementById("water-cycle-status");
+const load_cell_mv_txt = document.getElementById("load-cell-mv");
 const water_on_time_ms_txt = document.getElementById("water-pump-on-time-ms");
-const water_off_time_hr_txt = document.getElementById("water-pump-off-time-hr");
+const soak_time_min_txt = document.getElementById("soak-time-min");
 
 const date_time_txt = document.getElementById("date-time-current");
 
@@ -119,8 +120,8 @@ auto_cycle_on_btn.addEventListener("click", function(){
         client.send(pub_message);
 
         //send a message with the water pump 'off' time input field value
-        pub_message = new Paho.Message(water_off_time_hr_txt.value);
-        pub_message.destinationName = topic_water_off_time_hr;
+        pub_message = new Paho.Message(soak_time_min_txt.value);
+        pub_message.destinationName = topic_soak_time_min;
         pub_message.qos = 0;
         client.send(pub_message);
         
@@ -330,13 +331,13 @@ setInterval(updateDateTime, current_date_time_update_ms);
 function processMessage(message, topic)
 {
     console.log("processing message: " + message + " ; on topic: " + topic)
-    if (topic === "lettuce-esp32/device-state")
+    if (topic === sub_topic_root + "/device-state")
     {
         device_state_txt.innerText = message;
     }
-    else if (topic === "lettuce-esp32/water-cycle-status")
+    else if (topic === sub_topic_root + "/load-cell-mv")
     {
-        water_cycle_status_txt.innerText = message;
+        load_cell_mv_txt.innerText = message;
     }
 }
 
