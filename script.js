@@ -4,15 +4,12 @@ const client_id = String(Math.floor(Math.random() * 10e16));                    
 const topic_water_pump_state = "lettuce-hmi/water-pump";
 const topic_auto_cycle_status = "lettuce-hmi/auto-cycle";
 const topic_water_on_time_ms = "lettuce-hmi/water-on-time-ms";
-const topic_soak_time_min = "lettuce-hmi/soak-time-min"
-const topic_dry_weight_limit = "lettuce-hmi/dry-weight-limit"
+const topic_soak_time_min = "lettuce-hmi/soak-time-min";
+const topic_dry_weight_limit = "lettuce-hmi/dry-weight-limit";
 
 // subscribe topics
 const sub_topic = "weigh-station-esp32/#";
 const sub_topic_root = "weigh-station-esp32";
-const topic_device_state = "lettuce-esp32/device-state";    // "Idle", "WaterOn", or "WaterOff"
-const topic_water_cycle_status = "lettuce-esp32/water-cycle-status";    // "auto" or "manual"
-
 
 //create constants for the elements to be used in the script
 const messages_txtbx = document.getElementById("messages");
@@ -114,6 +111,7 @@ auto_cycle_on_btn.addEventListener("click", function(){
     if (isConnected)
     {
         newMessage("Publishing message ON to topic " + topic_auto_cycle_status);
+        newMessage("Updating Auto Cycle Settings" + topic_auto_cycle_status);
 
         //send a message with the water pump 'on' time input field value
         var pub_message = new Paho.Message(water_on_time_ms_txt.value);
@@ -153,7 +151,7 @@ auto_cycle_on_btn.addEventListener("click", function(){
 auto_cycle_off_btn.addEventListener("click", function(){
     if (isConnected)
     {
-        newMessage("Publishing message ON to topic " + topic_auto_cycle_status);
+        newMessage("Publishing message OFF to topic " + topic_auto_cycle_status);
         var pub_message = new Paho.Message("off");
         pub_message.destinationName = topic_auto_cycle_status;
         pub_message.qos = 0;
